@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.auth.LogInFragment">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressotp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_100sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/securelogin" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="Log In"
+        android:textColor="@color/purple_700"
+        android:textSize="@dimen/_18sdp"
+        app:layout_constraintTop_toBottomOf="@+id/progressotp"
+        tools:layout_editor_absoluteX="26dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="Enter your mobile number to login or register"
+        android:textAlignment="textStart"
+        android:textColor="#a3a3a3"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="26dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:endIconMode="custom"
+        app:endIconTint="@color/purple_500"
+        app:endIconDrawable="@drawable/ic_baseline_send_24"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Techathon.Button.Circle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/txtMobile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="26dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:maxLength="10"
+            android:id="@+id/edtMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:visibility="gone"
+        app:endIconMode="custom"
+        app:endIconTint="@color/purple_500"
+        app:endIconDrawable="@drawable/ic_baseline_send_24"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Techathon.Button.Circle"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/txtOTP"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="26dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:maxLength="6"
+            android:id="@+id/edtOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/btnLogIn"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Techathon.Button.Circle"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send OTP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMobile" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/purple_700"
+        android:indeterminateTintMode="src_atop"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.auth.BasicDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/white"
+            app:title="Few More Details"
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <ImageView
+                android:id="@+id/imgSubmit"
+                app:tint="@color/white"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/ic_baseline_check_24"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:layout_marginTop="@dimen/_30sdp"
+        android:id="@+id/imgUser"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_gravity="center"
+        android:src="@drawable/profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_appbar" />
+
+    <ImageView
+        app:tint="@color/purple_500"
+        android:id="@+id/imgCamera"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_baseline_add_a_photo_24"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/imgUser">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:hint="Name"
+                app:layout_constraintTop_toBottomOf="@+id/imgUser">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:hint="Email"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                tools:layout_editor_absoluteX="13dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <RadioGroup
+                android:id="@+id/selectGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+
+                <RadioButton
+                    android:id="@+id/selectMale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Male"
+                    android:textSize="@dimen/_10sdp" />
+
+                <RadioButton
+                    android:id="@+id/selactFemale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Female"
+                    android:textSize="@dimen/_10sdp" />
+
+                <RadioButton
+                    android:id="@+id/selactOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Other"
+                    android:textSize="@dimen/_10sdp" />
+
+
+            </RadioGroup>
+
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/txtSearchInstitute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                app:layout_constraintTop_toBottomOf="@+id/selectGender"
+                app:queryHint="Institute" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSearchInstitute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/txtSearchInstitute" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:id="@+id/textInputLayout3"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:hint="Institute"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/selectGender"
+                tools:layout_editor_absoluteX="13dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    app:endIconDrawable="@drawable/ic_baseline_cancel_24"
+                    android:enabled="false"
+                    android:id="@+id/txtInstitute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/txtSearchStream"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                app:layout_constraintTop_toBottomOf="@+id/rvSearchInstitute"
+                app:queryHint="Stream / Branch / Course / Class" />
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/rvSearchStream"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/txtSearchStream"
+                tools:layout_editor_absoluteX="6dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:id="@+id/textInputLayout5"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:hint="Stream / Branch / Course / Class"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/rvSearchInstitute"
+                tools:layout_editor_absoluteX="13dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    app:endIconDrawable="@drawable/ic_baseline_cancel_24"
+                    android:enabled="false"
+                    android:id="@+id/txtStream"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:id="@+id/textInputLayout4"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:hint="Institute ID Number"
+                app:layout_constraintTop_toBottomOf="@+id/rvSearchStream"
+                tools:layout_editor_absoluteX="13dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInstID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/purple_700"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "491298734271",
+    "project_id": "tech-a-thon-b766d",
+    "storage_bucket": "tech-a-thon-b766d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491298734271:android:d19f1d2d0eb881fc0d460a",
+        "android_client_info": {
+          "package_name": "com.ashutosh.techathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491298734271-pd5esa77uumjb9m9nlbncsbvrvqfalij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5lYnsQwxFvUWKjkKaN1ltk8NMS1JNfQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491298734271-pd5esa77uumjb9m9nlbncsbvrvqfalij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

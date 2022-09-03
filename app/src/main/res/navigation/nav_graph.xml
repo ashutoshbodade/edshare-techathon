@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.ashutosh.techathon.ui.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_mainFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_mainFragment_to_basicDetailsFragment"
+            app:destination="@id/basicDetailsFragment" />
+        <action
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_mainFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.ashutosh.techathon.ui.auth.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_logInFragment_to_basicDetailsFragment"
+            app:destination="@id/basicDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/basicDetailsFragment"
+        android:name="com.ashutosh.techathon.ui.auth.BasicDetailsFragment"
+        android:label="fragment_basic_details"
+        tools:layout="@layout/fragment_basic_details" >
+        <action
+            app:popUpTo="@id/basicDetailsFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_basicDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ashutosh.techathon.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+    </fragment>
+    <fragment
+        android:id="@+id/publicPostFragment"
+        android:name="com.ashutosh.techathon.ui.home.PublicPostFragment"
+        android:label="fragment_public_post"
+        tools:layout="@layout/fragment_public_post" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.ashutosh.techathon.ui.home.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+</navigation>
