@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_5sdp">
+    android:layout_marginTop="@dimen/_7sdp">
 
 
     <TextView
@@ -19,7 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <VideoView
+        android:id="@+id/viewVideo"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/imgFile"
         android:layout_margin="@dimen/_5sdp"
         android:layout_width="match_parent"
@@ -33,22 +43,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_5sdp"
-        android:text="Click here to Download"
+        android:text="Download"
         android:textColor="@color/white"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="@+id/imgFile"
         app:layout_constraintEnd_toEndOf="@+id/imgFile" />
 
-    <TextView
-        android:textSize="@dimen/_8sdp"
-        android:id="@+id/txtStream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        android:text="Stream"
-        android:textColor="@color/grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgFile" />
+
 
     <TextView
         android:layout_marginTop="@dimen/_2sdp"
@@ -59,7 +60,18 @@
         android:text="Student Name"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStream" />
+        app:layout_constraintTop_toBottomOf="@+id/imgFile" />
+
+    <TextView
+        android:id="@+id/txtStream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:text="Stream"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_8sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtStudentName" />
 
     <TextView
         android:id="@+id/txtTimeStamp"
@@ -71,15 +83,16 @@
         android:textColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/_8sdp"
-        app:layout_constraintTop_toBottomOf="@+id/txtStream" />
+        app:layout_constraintTop_toBottomOf="@+id/imgFile" />
 
 
     <View
-        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/grey"
-        app:layout_constraintTop_toBottomOf="@+id/txtStudentName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStream" />
 
 
 

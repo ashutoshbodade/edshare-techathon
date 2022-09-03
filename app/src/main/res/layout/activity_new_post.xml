@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            app:title="Send New Note"
+            app:title="Send note or any other file"
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
@@ -54,14 +54,74 @@
 
     <Button
         android:id="@+id/btnSelectFile"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:text="Upload Note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:text="Upload File"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/selectType" />
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/imgFile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelectFile"
+        tools:layout_editor_absoluteX="6dp" />
+
+    <VideoView
+        android:id="@+id/viewVideo"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelectFile" />
+
+    <RadioGroup
+        android:id="@+id/selectType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        <RadioButton
+            android:id="@+id/selectNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Notes"
+            android:textSize="@dimen/_10sdp" />
+        <RadioButton
+            android:id="@+id/selectAssignment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Assignment"
+            android:textSize="@dimen/_10sdp" />
+        <RadioButton
+            android:id="@+id/selectVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Video"
+            android:textSize="@dimen/_10sdp" />
+        <RadioButton
+            android:id="@+id/selectNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Notice"
+            android:textSize="@dimen/_10sdp" />
+        <RadioButton
+            android:id="@+id/selectOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Other File"
+            android:textSize="@dimen/_10sdp" />
+    </RadioGroup>
 
 
     <ProgressBar
@@ -72,6 +132,6 @@
         android:indeterminate="true"
         android:indeterminateTint="@color/purple_700"
         android:indeterminateTintMode="src_atop"
-        app:layout_constraintTop_toBottomOf="@+id/btnSelectFile" />
+        app:layout_constraintTop_toBottomOf="@+id/imgFile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

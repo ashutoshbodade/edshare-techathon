@@ -15,6 +15,8 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -48,6 +50,7 @@ class NewPostActivity : AppCompatActivity() {
     
     var fileUri = ""
     var fileType = ""
+    var noteType = ""
 
     lateinit var sm: SessionManager
 
@@ -72,20 +75,22 @@ class NewPostActivity : AppCompatActivity() {
             val validateDet = validateDetails()
             if(validateDet.first){
                 binding.progress.visibility = View.VISIBLE
-                binding.btnSelectFile.isEnabled = false
+                binding.imgSubmit.visibility=View.GONE
                 val data = mapOf(
                     "uid" to mAuth.currentUser!!.uid,
                     "created_at" to FieldValue.serverTimestamp(),
                     "file_type" to fileType,
                     "file_uri" to fileUri,
                     "title" to binding.txtTitle.text.toString(),
-                    "institute_id" to sm.getUser()!!.instituteid,
+                    "institute_student_id" to sm.getUser()!!.instituteid,
+                    "institute_name" to sm.getUser()!!.institutename,
                     "institute_stream" to sm.getUser()!!.institutestream,
                     "institute_uid" to sm.getUser()!!.instituteuid,
                     "name" to sm.getUser()!!.name,
+                    "note_type" to noteType,
                 )
                 db().collection("public_notes").add(data).addOnSuccessListener {
-                    Toast.makeText(this, "note added sucessfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "note added successfully", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }
@@ -94,6 +99,14 @@ class NewPostActivity : AppCompatActivity() {
                 Toast.makeText(this, validateDet.second, Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.selectType.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            val checkedRadioButton = group.findViewById<View>(checkedId) as RadioButton
+            val isChecked = checkedRadioButton.isChecked
+            if (isChecked) {
+                noteType = checkedRadioButton.text.toString()
+            }
+        })
 
 
     }
@@ -108,6 +121,10 @@ class NewPostActivity : AppCompatActivity() {
         else if(TextUtils.isEmpty(fileUri))
         {
             result = Pair(false, "Select file")
+        }
+        else if(TextUtils.isEmpty(noteType))
+        {
+            result = Pair(false, "Select type")
         }
 
 
@@ -149,7 +166,7 @@ class NewPostActivity : AppCompatActivity() {
         val docId = DocumentsContract.getDocumentId(fileUri)
         val split = docId.split(":".toRegex()).toTypedArray()
         val type = split[0]
-        Log.e("TAG", "addFile: $type", )
+        Log.e("TAG", "addFile: $type")
         return type
     }
 
@@ -159,6 +176,8 @@ class NewPostActivity : AppCompatActivity() {
         binding.btnSelectFile.isActivated = false
         binding.btnSelectFile.isClickable = false
         binding.progress.visibility = View.VISIBLE
+
+        binding.btnSelectFile.text = "Please Wait"
         
         Toast.makeText(this, "Please wait, uploading the file", Toast.LENGTH_SHORT).show()
 
@@ -185,11 +204,29 @@ class NewPostActivity : AppCompatActivity() {
                     
                     fileType = getFileType(docURI)
 
-                    binding.btnSelectFile.isEnabled = true
-                    binding.btnSelectFile.isActivated = true
-                    binding.btnSelectFile.isClickable = true
+                    binding.btnSelectFile.visibility = View.GONE
+
+                    binding.imgFile.visibility = View.VISIBLE
 
                     Toast.makeText(this, "File Upload Success", Toast.LENGTH_SHORT).show()
+
+                    when(fileType){
+                        "image" ->{
+                            Glide.with(this).load(fileUri).placeholder(R.drawable.profile).into(binding.imgFile)
+                        }
+                        "document" ->{
+                            binding.imgFile.setImageResource(R.drawable.ic_doc)
+                        }
+                        "video" ->{
+                            binding.imgFile.visibility=View.INVISIBLE
+                            binding.viewVideo.visibility=View.VISIBLE
+                            binding.viewVideo.setVideoPath(fileUri)
+                            binding.viewVideo.start()
+                        }
+                        else ->{
+                            binding.imgFile.setImageResource(R.drawable.ic_doc)
+                        }
+                    }
                 }
                 else
                 {

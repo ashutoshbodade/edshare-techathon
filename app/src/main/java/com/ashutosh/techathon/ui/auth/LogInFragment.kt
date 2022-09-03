@@ -10,7 +10,10 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.ashutosh.techathon.R
 import com.ashutosh.techathon.databinding.FragmentLogInBinding
+import com.ashutosh.techathon.model.UserDataModel
+import com.ashutosh.techathon.utils.Constants
 import com.ashutosh.techathon.utils.Constants.mAuth
+import com.ashutosh.techathon.utils.SessionManager
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.AuthResult
@@ -27,6 +30,8 @@ class LogInFragment : Fragment() {
     lateinit var verificationId:String
     var phoneNumber = ""
 
+    lateinit var sm:SessionManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +46,8 @@ class LogInFragment : Fragment() {
                 verify ()
             }
         }
+
+        sm = SessionManager(requireActivity())
 
         binding.txtOTP.setEndIconOnClickListener{
             authenticate ()
@@ -106,7 +113,28 @@ class LogInFragment : Fragment() {
         mAuth.signInWithCredential(credential).addOnCompleteListener {
                 task: Task<AuthResult> ->
             if (task.isSuccessful) {
-               findNavController().navigate(R.id.action_logInFragment_to_basicDetailsFragment)
+
+                Constants.db().collection("users").document(mAuth.currentUser!!.uid).get()
+                    .addOnSuccessListener { userDoc ->
+                        if(userDoc["name"] == null ||
+                            userDoc["gender"] == null ||
+                            userDoc["email"] == null ||
+                            userDoc["profile_image"] == null ||
+                            userDoc["uid"] == null ||
+                            userDoc["instituteid"] == null ||
+                            userDoc["institutename"] == null ||
+                            userDoc["institutestream"] == null
+                        ){
+                            findNavController().navigate(R.id.action_logInFragment_to_basicDetailsFragment)
+                        }
+                        else
+                        {
+                            val userData = userDoc.toObject(UserDataModel::class.java)
+                            sm.saveUser(userData!!)
+                            findNavController().navigate(R.id.action_logInFragment_to_homeFragment)
+                        }
+                    }
+
             }
             else{
                 binding.progress.visibility=View.GONE

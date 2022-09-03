@@ -66,7 +66,7 @@ class BasicDetailsFragment : Fragment() {
     val TAG = "BasicDetails"
     var imageuri :String= ""
     var gender = ""
-    var instituteid = ""
+    var instituteuid = ""
     var institutename = ""
     var institutestream= ""
 
@@ -174,7 +174,7 @@ class BasicDetailsFragment : Fragment() {
                     "uid" to mAuth.currentUser!!.uid,
                     "name" to binding.txtName.text.toString(),
                     "instituteid" to binding.txtInstID.text.toString(),
-                    "instituteuid" to instituteid,
+                    "instituteuid" to instituteuid,
                     "institutename" to institutename,
                     "institutestream" to institutestream,
                     "fcm_token" to "",
@@ -195,7 +195,7 @@ class BasicDetailsFragment : Fragment() {
     }
 
     fun selectInstitute(data:InstitudeModel){
-        instituteid = data.instituteuid
+        instituteuid = data.instituteuid
         institutename = data.institutename
         binding.rvSearchInstitute.visibility=View.GONE
         binding.txtSearchInstitute.visibility=View.GONE
@@ -318,7 +318,7 @@ class BasicDetailsFragment : Fragment() {
         {
             result = Pair(false, "Select profile pic")
         }
-        else if(TextUtils.isEmpty(instituteid) || TextUtils.isEmpty(institutename))
+        else if(TextUtils.isEmpty(instituteuid) || TextUtils.isEmpty(institutename))
         {
             result = Pair(false, "Select institute")
         }

@@ -13,6 +13,7 @@ import com.ashutosh.techathon.utils.Constants.db
 import com.ashutosh.techathon.utils.Constants.mAuth
 import com.ashutosh.techathon.utils.SessionManager
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 
 
@@ -33,6 +34,13 @@ class HomeFragment : Fragment() {
 
 
         sm = SessionManager(requireActivity())
+
+        binding.txtInstitute.text = sm.getUser()!!.institutename
+
+        binding.imgLogOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            requireActivity().finish()
+        }
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {

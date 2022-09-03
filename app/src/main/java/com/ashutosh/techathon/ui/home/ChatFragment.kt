@@ -1,6 +1,7 @@
 package com.ashutosh.techathon.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -30,4 +31,13 @@ class ChatFragment : Fragment() {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.e("TAG", "onResume: ", )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("TAG", "onPause: ", )
+    }
 }

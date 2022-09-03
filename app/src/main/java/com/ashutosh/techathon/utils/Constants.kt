@@ -13,6 +13,7 @@ import java.util.*
 
 object Constants{
 
+    const val DATE_TIME_FORMAT = "hh:mm a dd-MM-yyyy"
         const val REQUEST_CODE_PERMISSIONS = 10
 
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()

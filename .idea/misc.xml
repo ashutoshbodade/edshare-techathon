@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_new_post.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_public_post.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.28177083333333336" />
+        <entry key="app/src/main/res/layout/row_chat_users.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/row_notes.xml" value="0.33" />
         <entry key="app/src/main/res/layout/row_search.xml" value="0.35625" />
       </map>
