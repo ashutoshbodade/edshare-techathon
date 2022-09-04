@@ -2,7 +2,7 @@
 
 Ed-Share is a media sharing app for student where student can share assignment, notes, tutorial, notice, etc in any format with fellow students publically specific to their institute or in a private chat.
 
-Edshare app is build fro android using firebase as backend, kotlin as prog language, fcm and firebase cloud functions for push notification and jetpack components like navigation graph, view binding, etc.
+Edshare app is build for android using firebase as backend, kotlin as prog language, fcm and firebase cloud functions for push notification and jetpack components like navigation graph, view binding, etc.
 
 If any students uploads a media content then all the students in a institute will get notified this we have done using firebase cloud messaging service.
 Students can chat or share any other media in private chat room, and they will get realtime send, read, delivered receipt.
@@ -24,10 +24,10 @@ Technlogies used
 - Firebase Cloud Functions for pushing notification to subscribed topic
 
 # key features
--chat privately to all students in perticular institute
--realtime chat receipts like send, delivered, read
--send or post publically any type of file like document, video, image, audio, ppt, docx, etc
--login using mobile and otp so need to remember password
+- chat privately to all students in perticular institute
+- realtime chat receipts like send, delivered, read
+- send or post publically any type of file like document, video, image, audio, ppt, docx, etc
+- login using mobile and otp so need to remember password
 
 # demo
 
