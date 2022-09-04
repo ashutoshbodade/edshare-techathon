@@ -30,7 +30,9 @@ Technlogies used
 -login using mobile and otp so need to remember password
 
 # demo
- you can download apk from this repo and use it for demo view
+[Youtube Demo Video](https://youtu.be/lG9Qc--hbJA) to view app demo
+
+you can also download apk 
  
  # project setup
  you need to clone this project and cofigure firebase for firestore database, storage, authentication using mobile and firebase cloud messanging.
