@@ -59,6 +59,10 @@ class NewPostActivity : AppCompatActivity() {
         _binding = ActivityNewPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val type = intent.getStringExtra("sendType")
+        val chatID = intent.getStringExtra("chatID")
+        val receiverUID = intent.getStringExtra("receiverUID")
+
         storage = FirebaseStorage.getInstance()
         storageReference = storage!!.reference
 
@@ -76,6 +80,8 @@ class NewPostActivity : AppCompatActivity() {
             if(validateDet.first){
                 binding.progress.visibility = View.VISIBLE
                 binding.imgSubmit.visibility=View.GONE
+
+                if(type == "public"){
                 val data = mapOf(
                     "uid" to mAuth.currentUser!!.uid,
                     "created_at" to FieldValue.serverTimestamp(),
@@ -86,12 +92,57 @@ class NewPostActivity : AppCompatActivity() {
                     "institute_name" to sm.getUser()!!.institutename,
                     "institute_stream" to sm.getUser()!!.institutestream,
                     "institute_uid" to sm.getUser()!!.instituteuid,
+                    "student_profile_pic" to sm.getUser()!!.profile_image,
                     "name" to sm.getUser()!!.name,
                     "note_type" to noteType,
                 )
                 db().collection("public_notes").add(data).addOnSuccessListener {
                     Toast.makeText(this, "note added successfully", Toast.LENGTH_SHORT).show()
                     finish()
+                }
+                }
+                else
+                {
+                    val data = mapOf(
+                        "uid" to mAuth.currentUser!!.uid,
+                        "created_at" to FieldValue.serverTimestamp(),
+                        "file_type" to fileType,
+                        "file_uri" to fileUri,
+                        "title" to binding.txtTitle.text.toString(),
+                        "institute_student_id" to sm.getUser()!!.instituteid,
+                        "institute_name" to sm.getUser()!!.institutename,
+                        "institute_stream" to sm.getUser()!!.institutestream,
+                        "institute_uid" to sm.getUser()!!.instituteuid,
+                        "student_profile_pic" to sm.getUser()!!.profile_image,
+                        "name" to sm.getUser()!!.name,
+                        "note_type" to noteType,
+                        "to" to receiverUID,
+                        "from" to Constants.mAuth.currentUser!!.uid,
+                        "message" to "",
+                        "deliveredTime" to null,
+                        "readTime" to null,
+                        "sendTime" to FieldValue.serverTimestamp(),
+                        "type" to 1,
+                        "status" to 0,
+                    )
+
+                    db().collection("chats").document(chatID!!).collection("messages").add(data).addOnSuccessListener {
+
+                        val chatRef = Constants.db().collection("chats").document(chatID)
+
+                        Constants.db().runTransaction { tran ->
+                            val snapshot = tran.get(chatRef)
+                            val newUnred = snapshot.getLong(receiverUID+"_unread")!!+1L
+                            tran.update(chatRef,receiverUID+"_unread",newUnred)
+                            tran.update(chatRef,"recent_message_time",FieldValue.serverTimestamp())
+                        }
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "note send successfully", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+
+
+                    }
                 }
             }
             else
@@ -212,16 +263,17 @@ class NewPostActivity : AppCompatActivity() {
 
                     when(fileType){
                         "image" ->{
-                            Glide.with(this).load(fileUri).placeholder(R.drawable.profile).into(binding.imgFile)
+                            Glide.with(this).load(fileUri).placeholder(R.drawable.ic_placeholder).into(binding.imgFile)
                         }
                         "document" ->{
                             binding.imgFile.setImageResource(R.drawable.ic_doc)
                         }
                         "video" ->{
-                            binding.imgFile.visibility=View.INVISIBLE
-                            binding.viewVideo.visibility=View.VISIBLE
-                            binding.viewVideo.setVideoPath(fileUri)
-                            binding.viewVideo.start()
+                            binding.imgFile.setImageResource(R.drawable.ic_video)
+//                            binding.imgFile.visibility=View.INVISIBLE
+//                            binding.viewVideo.visibility=View.VISIBLE
+//                            binding.viewVideo.setVideoPath(fileUri)
+//                            binding.viewVideo.start()
                         }
                         else ->{
                             binding.imgFile.setImageResource(R.drawable.ic_doc)

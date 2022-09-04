@@ -8,22 +8,39 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="gone"
         android:layout_margin="@dimen/_10sdp"
-        android:id="@+id/btnNewPost"
+        android:id="@+id/asdad"
+        app:tint="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@drawable/ic_baseline_check_24"
+        android:src="@drawable/ic_newpost"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:focusable="true" />
 
+    <Button
+        android:textStyle="bold"
+        android:id="@+id/btnNewPost"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:drawableEnd="@drawable/ic_small_newpost"
+        android:drawableTint="@color/chat_bg"
+        android:text="Send New File TO All"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="26dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/rvNotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnNewPost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

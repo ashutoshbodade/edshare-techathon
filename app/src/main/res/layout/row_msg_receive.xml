@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_3sdp">
+
+
+    <LinearLayout
+        android:id="@+id/layout_gchat_container_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingBottom="@dimen/_5sdp"
+            android:background="@drawable/shape_message_receive"
+            android:id="@+id/noteView"
+            android:visibility="gone"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_marginTop="@dimen/_3sdp"
+                android:id="@+id/txtTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:text="Title"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/imgFile"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_130sdp"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+
+            <ImageView
+                android:src="@drawable/ic_download"
+                android:layout_margin="@dimen/_5sdp"
+                android:id="@+id/imgDownload"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgFile"
+                app:layout_constraintEnd_toEndOf="@+id/imgFile" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txtUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_2sdp"
+            android:background="@android:color/transparent"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="~"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/_9sdp" />
+
+        <TextView
+            android:paddingVertical="@dimen/_3sdp"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:background="@drawable/shape_message_receive"
+            android:id="@+id/txtMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp" />
+
+
+
+        <TextView
+            android:id="@+id/txtTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="start"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text=""
+            android:textSize="@dimen/_7sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/layout_gchat_container_me"
+            app:layout_constraintStart_toStartOf="@+id/layout_gchat_container_me"
+            app:layout_constraintTop_toBottomOf="@+id/layout_gchat_container_me" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

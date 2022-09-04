@@ -22,18 +22,7 @@ class SessionManager(private val context:Context) {
         }
     }
 
-    private fun storeLong(key: String, value: Long) {
-        editor.run {
-            putLong(key, value)
-            apply()
-        }
-    }
 
-    private fun storeBoolean(key: String, value: Boolean) =
-        editor.run {
-            putBoolean(key, value)
-            apply()
-        }
 
     private fun getString(key: String) =
         sharedPreferences.getString(key, "")

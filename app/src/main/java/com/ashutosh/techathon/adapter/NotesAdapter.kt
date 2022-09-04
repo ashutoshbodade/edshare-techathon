@@ -14,6 +14,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ashutosh.techathon.R
+import com.ashutosh.techathon.ui.chat.ChatActivity
 import com.ashutosh.techathon.utils.Constants
 import com.ashutosh.techathon.utils.Constants.db
 import com.ashutosh.techathon.utils.Constants.mAuth
@@ -52,24 +53,39 @@ class NotesAdapter(val list: ArrayList<QueryDocumentSnapshot>, val context: Cont
         holder.bindItems(dataItem,context)
         holder.setIsRecyclable(false)
 
-        holder.txtDownload.setOnClickListener {
+        holder.imgDownload.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(dataItem["file_uri"].toString())
+            context.startActivity(i)
+        }
+
+        holder.imgFile.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(dataItem["file_uri"].toString())
             context.startActivity(i)
         }
 
         holder.txtStudentName.setOnClickListener {
-          Constants.db().collection("chats")
+            if(mAuth.currentUser!!.uid != dataItem["uid"].toString())
+            {
+
+
+          db().collection("chats")
               .whereEqualTo("users."+mAuth.currentUser!!.uid,true)
               .whereEqualTo("users."+dataItem["uid"].toString(),true)
               .get()
               .addOnSuccessListener { docs ->
                     if(docs.size() > 0){
-                        Log.e("TAG", "onBindViewHolder: documentfound ", )
+                        for (doc in docs){
+                            Log.e("TAG", "onBindViewHolder: documentfound ", )
+                            val intent = Intent(context, ChatActivity::class.java)
+                            intent.putExtra("receiverUID",dataItem["uid"].toString())
+                            intent.putExtra("docID",doc.id)
+                            context.startActivity(intent)
+                        }
                     }
                   else
                     {
-
                         val usersArray = ArrayList<String>()
                         usersArray.add(mAuth.currentUser!!.uid)
                         usersArray.add(dataItem["uid"].toString())
@@ -89,15 +105,19 @@ class NotesAdapter(val list: ArrayList<QueryDocumentSnapshot>, val context: Cont
                             dataItem["uid"].toString()+"_unread" to 0L,
                             mAuth.currentUser!!.uid+"_name" to sm.getUser()!!.name,
                             mAuth.currentUser!!.uid+"_unread" to 0L,
+                            "recent_message_time" to FieldValue.serverTimestamp(),
                         )
 
                        db().collection("chats").add(data)
                            .addOnSuccessListener {
-                               Log.e("TAG", "onBindViewHolder: user_added ", )
+                               val intent = Intent(context, ChatActivity::class.java)
+                               intent.putExtra("receiverUID",dataItem["uid"].toString())
+                               intent.putExtra("docID",it.id)
+                               context.startActivity(intent)
                            }
                     }
               }
-        }
+        }  }
     }
 
 
@@ -105,7 +125,7 @@ class NotesAdapter(val list: ArrayList<QueryDocumentSnapshot>, val context: Cont
 
         var txtTitle = itemView.findViewById<TextView>(R.id.txtTitle)
         var imgFile = itemView.findViewById<ImageView>(R.id.imgFile)
-        var txtDownload = itemView.findViewById<TextView>(R.id.txtDownload)
+        var imgDownload = itemView.findViewById<ImageView>(R.id.imgDownload)
         var txtStream = itemView.findViewById<TextView>(R.id.txtStream)
         var txtStudentName = itemView.findViewById<TextView>(R.id.txtStudentName)
         var txtTimeStamp = itemView.findViewById<TextView>(R.id.txtTimeStamp)
@@ -115,7 +135,7 @@ class NotesAdapter(val list: ArrayList<QueryDocumentSnapshot>, val context: Cont
         {
             txtTitle.text = dataitem["title"].toString()+" ("+""+dataitem["note_type"].toString()+")"
             txtStream.text = dataitem["institute_stream"].toString()
-            txtStudentName.text = "Uploaded by : "+dataitem["name"].toString()
+            txtStudentName.text = dataitem["name"].toString()
             if(dataitem["created_at"]  != null){
                 txtTimeStamp.text = getDateTimeFirebaseTimestamp(dataitem["created_at"] as Timestamp)
             }
@@ -124,13 +144,13 @@ class NotesAdapter(val list: ArrayList<QueryDocumentSnapshot>, val context: Cont
             val fileUri = dataitem["file_uri"].toString()
             when(fileType){
                 "image" ->{
-                    Glide.with(context).load(fileUri).centerCrop().placeholder(R.drawable.profile).into(imgFile)
+                    Glide.with(context).load(fileUri).centerCrop().placeholder(R.drawable.ic_placeholder).into(imgFile)
                 }
                 "document" ->{
                     imgFile.setImageResource(R.drawable.ic_doc)
                 }
                 "video" ->{
-                    imgFile.setImageResource(R.drawable.ic_doc)
+                    imgFile.setImageResource(R.drawable.ic_video)
 //                    viewVideo.visibility=View.VISIBLE
 //                    imgFile.visibility=View.INVISIBLE
 //                    viewVideo.setVideoPath(fileUri)

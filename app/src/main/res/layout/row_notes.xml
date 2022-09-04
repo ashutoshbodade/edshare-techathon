@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_7sdp">
-
+    android:layout_marginTop="@dimen/_15sdp">
 
     <TextView
+        android:fontFamily="@font/sf_pro_display_bold"
         android:id="@+id/txtTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:maxLines="2"
         android:text="Title"
-        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,14 +38,15 @@
         android:src="@color/grey"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
-    <TextView
+    <ImageView
+        android:src="@drawable/ic_download"
         android:layout_margin="@dimen/_5sdp"
-        android:id="@+id/txtDownload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imgDownload"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:text="Download"
-        android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="@+id/imgFile"
         app:layout_constraintEnd_toEndOf="@+id/imgFile" />
@@ -58,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:text="Student Name"
-        android:textColor="@color/grey"
+        android:textColor="@color/purple_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgFile" />
 

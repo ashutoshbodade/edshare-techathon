@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">techathon</string>
+    <string name="app_name">Ed-Share tech-a-thon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_notification_channel_id">0</string>

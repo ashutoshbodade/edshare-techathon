@@ -120,7 +120,7 @@ class BasicDetailsFragment : Fragment() {
 
         binding.txtSearchStream.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                loadSearchInstitute(query!!)
+                loadSearchStream(query!!)
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {

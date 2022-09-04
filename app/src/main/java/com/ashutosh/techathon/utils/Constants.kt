@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import java.lang.Exception
 import java.util.*
 
@@ -19,7 +20,12 @@ object Constants{
         val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
         fun db(): FirebaseFirestore {
-            return FirebaseFirestore.getInstance()
+            val settings = FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false)
+                .build()
+            val db=  FirebaseFirestore.getInstance()
+            //db.firestoreSettings = settings
+            return db
         }
 
     fun isValidEmail(email: String): Boolean {

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.ashutosh.techathon.MainActivity
+import com.ashutosh.techathon.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -28,7 +29,7 @@ class FirebaseNotification : FirebaseMessagingService() {
 
         val channelId = "Default"
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(android.R.mipmap.sym_def_app_icon)
+            .setSmallIcon(R.drawable.ic_logo)
             .setContentTitle(remoteMessage.notification!!.title)
             .setContentText(remoteMessage.notification!!.body).setAutoCancel(true)
             .setContentIntent(pendingIntent)

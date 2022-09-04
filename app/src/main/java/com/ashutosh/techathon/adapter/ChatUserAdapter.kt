@@ -1,6 +1,7 @@
 package com.ashutosh.techathon.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ashutosh.techathon.R
+import com.ashutosh.techathon.ui.chat.ChatActivity
 import com.ashutosh.techathon.utils.Constants.db
 import com.ashutosh.techathon.utils.Constants.mAuth
 import com.bumptech.glide.Glide
@@ -47,12 +49,15 @@ class ChatUserAdapter(val list: ArrayList<QueryDocumentSnapshot>, val context: C
         holder.setIsRecyclable(false)
 
         holder.itemView.setOnClickListener {
-
-
+            val intent = Intent(context,ChatActivity::class.java)
+            intent.putExtra("receiverUID",otherUserID)
+            intent.putExtra("docID",dataItem.id)
+            context.startActivity(intent)
         }
+
         db().collection("users").document(otherUserID).get()
             .addOnSuccessListener { doc->
-                Glide.with(context).load(doc["profile_image"].toString()).centerCrop().placeholder(R.drawable.profile).into(holder.imgUser)
+                Glide.with(context).load(doc["profile_image"].toString()).circleCrop().placeholder(R.drawable.profile).into(holder.imgUser)
             }
     }
 

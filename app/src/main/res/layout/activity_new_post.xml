@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextColor="@color/white"
             app:title="Send note or any other file"
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
@@ -101,11 +102,11 @@
             android:text="Assignment"
             android:textSize="@dimen/_10sdp" />
         <RadioButton
-            android:id="@+id/selectVideo"
+            android:id="@+id/selectTutorial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Video"
+            android:text="Tutorial"
             android:textSize="@dimen/_10sdp" />
         <RadioButton
             android:id="@+id/selectNotice"
@@ -119,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Other File"
+            android:text="Other Info"
             android:textSize="@dimen/_10sdp" />
     </RadioGroup>
 

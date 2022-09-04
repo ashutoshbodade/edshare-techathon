@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
         binding.txtInstitute.text = sm.getUser()!!.institutename
 
         binding.imgLogOut.setOnClickListener {
+            sm.clearAll()
             FirebaseAuth.getInstance().signOut()
             requireActivity().finish()
         }
@@ -62,8 +63,8 @@ class HomeFragment : Fragment() {
         }
 
         homePagerAdapter = HomePagerAdapter(parentFragmentManager)
-        homePagerAdapter.add(PublicPostFragment(), "Public Post")
-        homePagerAdapter.add(ChatFragment(), "Chat")
+        homePagerAdapter.add(PublicPostFragment(), "Institute Wall")
+        homePagerAdapter.add(ChatFragment(), "Inbox")
 
         binding.viewpager.adapter = homePagerAdapter
         binding.tabLayout.setupWithViewPager(binding.viewpager)

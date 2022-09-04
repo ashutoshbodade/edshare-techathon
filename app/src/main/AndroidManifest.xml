@@ -21,6 +21,9 @@
             android:name=".ui.post.NewPostActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.chat.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -37,6 +40,10 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_logo" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
