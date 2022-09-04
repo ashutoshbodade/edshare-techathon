@@ -30,9 +30,12 @@ Technlogies used
 -login using mobile and otp so need to remember password
 
 # demo
+
 [Youtube Demo Video](https://youtu.be/lG9Qc--hbJA) to view app demo
 
-you can also download apk 
+you can also download apk [click here to download apk](https://github.com/ashutoshbodade/edshare-techathon/blob/main/Ed-Share%20Ver%201.0%20Release.apk)
  
- # project setup
- you need to clone this project and cofigure firebase for firestore database, storage, authentication using mobile and firebase cloud messanging.
+[click here to view app screenshots]
+
+# project setup
+you need to clone this project and cofigure firebase for firestore database, storage, authentication using mobile and firebase cloud messanging.
